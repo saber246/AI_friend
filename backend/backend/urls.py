@@ -17,10 +17,12 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
+from web.urls import urlpatterns as web_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include(web_urlpatterns)),
 ]
 
 if settings.DEBUG:
