@@ -1,11 +1,10 @@
 <script setup>
-import NavBor from './components/navbar'
-
+import ChatView from './components/ChatView.vue'
 </script>
 
 
 <template>
-  <NavBor />
+  <ChatView />
 
 </template>
 
