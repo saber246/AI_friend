@@ -1,10 +1,13 @@
 <script setup>
-import ChatView from './components/ChatView.vue'
+import MainLayout from './MainLayout.vue'
+
 </script>
 
 
 <template>
-  <ChatView />
+  <MainLayout>
+    <router-view></router-view>
+  </MainLayout>
 
 </template>
 
