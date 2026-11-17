@@ -45,12 +45,24 @@
             @keyup.enter="handleSearch"
             clearable
           />
-          <el-button type="primary" size="" @click="handleSearch">
+        <el-button type="primary" size="large" @click="handleSearch">
             <el-icon><Search /></el-icon>
             <span>搜索</span>
         </el-button>
         </div>
-        <el-button type="info" @click="loginDialogVisible = true">登录</el-button>
+        <el-button
+            v-if="user.isLogin()"
+            class="create-link"
+            size="large"
+            @click="router.push({ name: 'create-index' })"
+            text
+        >
+            <el-icon><CirclePlus /></el-icon>
+            <span>创作</span>
+        </el-button>
+
+        <el-button v-if="!user.isLogin()" type="info" size="large" @click="loginDialogVisible = true">登录</el-button>
+        <UserPopover v-else></UserPopover>
       </el-header>
       <el-main class="app-main">
         <slot></slot>
@@ -118,6 +130,10 @@
 import { el } from 'element-plus/es/locales.mjs'
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
+import { useUserStore} from '@/store/user'
+import UserPopover from '@/components/UserPopover.vue'
+
+const user = useUserStore()
 
 const isCollapse = ref(true)
 const activeMenu = ref('1')
@@ -222,6 +238,14 @@ const handleMenuSelect = (index) => {
 .login-button {
     background-color: black;
     color: #e4e7ed;
+}
+.create-link:hover {
+  color: #409eff;
+}
+
+/* 按下瞬间 */
+.create-link:active {
+  color: #337ecc;
 }
 </style>
 

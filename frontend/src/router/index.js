@@ -19,11 +19,6 @@ const router = createRouter({
       component: () => import('@/views/friend/FriendIndex.vue'),
     },
     {
-      path: '/error/',
-      name: 'error-index',
-      component: () => import('@/views/error/NotFoundIndex.vue'),
-    },
-    {
       path: '/user/account/login/',
       name: 'login-index',
       component: () => import('@/views/user/account/LoginIndex.vue'),
@@ -39,25 +34,35 @@ const router = createRouter({
       component: () => import('@/views/user/space/SpaceIndex.vue'),
     },
     {
+        path: '/user/space/:user_id/work/',
+        name: 'work-index',
+        component: () => import('@/views/user/space/work/WorkIndex.vue'),
+    },
+    {
+        path: '/user/space/:user_id/favorite/',
+        name: 'favorite-index',
+        component: () => import('@/views/user/space/favorite/FavoriteIndex.vue'),
+    },
+    {
       path: '/profile/',
       name: 'profile-index',
       component: () => import('@/views/profile/ProfileIndex.vue'),
+    },
+    {
+        path: '/settings/',
+        name: 'setting-index',
+        component: () => import('@/views/setting/SettingIndex.vue'),
+    },
+    {
+      path: '/error/',
+      name: 'error-index',
+      component: () => import('@/views/error/NotFoundIndex.vue'),
     },
     {
       path: '/:pathMatch(.*)*',
       redirect: '/error/',
       name: 'not-found-index',
     },
-    {
-      path: '/take/',
-      name: 'take-index',
-      component: () => import('@/views/take/TakeIndex.vue'),
-    },
-    {
-        path: '/settings/',
-        name: 'setting-index',
-        component: () => import('@/views/setting/SettingIndex.vue'),
-    }
   ],
 })
 
