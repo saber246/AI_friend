@@ -1,0 +1,1 @@
+import{c as e,d as t,i as n}from"./index-DwPQALfC.js";var r={__name:`FavoriteIndex`,setup(r){return n().params.user_id,(n,r)=>(t(),e(`div`,null,`我的收藏`))}};export{r as default};

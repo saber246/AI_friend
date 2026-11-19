@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.models import User
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -34,16 +35,16 @@ class RegisterView(APIView):
                 'result': 'success',
                 'access': str(refresh.access_token),
                 'user_id': user.pk, # type: ignore
-                'user_name': user.username,
-                'user_photo': user_profile.photo.url,
-                'user_profile': user_profile.profile,
+                'username': user.username,
+                'photo': user_profile.photo.url,
+                'profile': user_profile.profile,
             })
             resopnse.set_cookie(
                 key = 'refresh_token',
                 value = str(refresh),
                 httponly = True,
                 samesite = 'Lax',
-                secure = True,
+                secure = not settings.DEBUG,
                 max_age = 60 * 60 * 24 * 7
             )
             return resopnse

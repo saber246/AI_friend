@@ -15,8 +15,8 @@
           <template #title>首页</template>
         </el-menu-item>
         <el-menu-item index="2">
-          <el-icon><User /></el-icon>
-          <template #title>好友</template>
+            <el-icon><User /></el-icon>
+            <template #title>好友</template>
         </el-menu-item>
         <el-menu-item index="3">
           <el-icon><CirclePlusFilled /></el-icon>
@@ -61,7 +61,7 @@
             <span>创作</span>
         </el-button>
 
-        <el-button v-if="!user.isLogin()" type="info" size="large" @click="loginDialogVisible = true">登录</el-button>
+        <el-button v-if="!user.isLogin()" type="info" size="large" @click="router.push({name: 'login-index' })">登录</el-button>
         <UserPopover v-else></UserPopover>
       </el-header>
       <el-main class="app-main">
@@ -70,60 +70,6 @@
     </el-container>
   </el-container>
 
-  <el-dialog
-    v-model="loginDialogVisible"
-    title="用户登录"
-    width="360px"
-    center
-  >
-    <el-form :model="loginForm" :rules="loginRules" ref="loginFormRef" label-position="top"hide-required-asterisk>
-        <el-form-item label="用户名" prop="username">
-            <el-input v-model="loginForm.username" placeholder="请输入用户名"/>
-        </el-form-item>
-        <el-form-item label="密码" prop="password">
-            <el-input v-model="loginForm.password" placeholder="请输入密码"/>
-        </el-form-item>
-    </el-form>
-
-    <template #footer>
-        <el-button class="login-button" @click="handleLogin">登录</el-button>
-        <el-button  @click="loginDialogVisible = false">取消</el-button>
-        <div style="display: flex; justify-content: flex-end;">没有账号，
-            <el-link type="primary" @click="registerDialogVisible = true">去注册</el-link>
-        </div>
-    </template>
-  </el-dialog>
-
-  <el-dialog
-    v-model="registerDialogVisible"
-    title="用户注册"
-    width="400px"
-    center
-  >
-    <el-form 
-        :model="registerForm" 
-        :rules="registerRules" 
-        ref="registerFormRef" 
-        label-position="top"
-        hide-required-asterisk
-        size="large"
-    >
-        <el-form-item label="用户名" prop="username">
-            <el-input v-model="registerForm.username" placeholder="请输入用户名"/>
-        </el-form-item>
-        <el-form-item label="密码" prop="password">
-            <el-input v-model="registerForm.password" placeholder="请输入密码"/>
-        </el-form-item>
-        <el-form-item label="确认密码" prop="confirmPassword">
-            <el-input v-model="registerForm.confirmPassword" placeholder="请确认密码"/>
-        </el-form-item>
-    </el-form>
-
-    <template #footer>
-        <el-button type="primary" @click="handleRegister">注册账户</el-button>
-        <el-button  @click="registerDialogVisible = false">取消</el-button>
-    </template>
-  </el-dialog>
 </template>
 
 <script setup>
@@ -133,58 +79,18 @@ import { useRouter } from 'vue-router'
 import { useUserStore} from '@/store/user'
 import UserPopover from '@/components/UserPopover.vue'
 
-const user = useUserStore()
 
+const user = useUserStore()
 const isCollapse = ref(true)
 const activeMenu = ref('1')
 const searchText = ref('')
-const loginDialogVisible = ref(false)
-const loginFormRef = ref(null)
-const loginForm = reactive({
-    username: '',
-    password: ''
-})
-const registerDialogVisible = ref(false)
-const registerFormRef = ref(null)
-const registerForm = reactive({
-    username: '',
-    password: '',
-    confirmPassword: ''
-})
 const router = useRouter()
 
-const loginRules = reactive({
-    username: [
-        { required: true, message: '请输入用户名', trigger: 'blur' }
-    ],
-    password: [
-        { required: true, message: '请输入密码', trigger: 'blur' }
-    ],
-})
-
-const registerRules = reactive({
-    username: [
-        { required: true, message: '请输入用户名', trigger: 'blur' }
-    ],
-    password: [
-        { required: true, message: '请输入密码', trigger: 'blur' }
-    ],
-    confirmPassword: [
-        { required: true, message: '请确认密码', trigger: 'blur' }
-    ],
-})
 
 const handleSearch = () => {
     console.log('hello world')
 }
 
-const handleLogin = () => {
-    
-}
-
-const handleRegister = () => {
-
-}
 
 const handleMenuSelect = (index) => {
     if (index === '1'){
@@ -248,5 +154,3 @@ const handleMenuSelect = (index) => {
   color: #337ecc;
 }
 </style>
-
-

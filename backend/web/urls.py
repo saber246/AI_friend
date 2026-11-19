@@ -5,6 +5,7 @@ from rest_framework_simplejwt.views import (
 )
 
 from .views import index
+from .views.user.get_user_info import GetUserInfoView
 from .views.user.login import LoginView
 from .views.user.logout import LogoutView
 from .views.user.refresh_token import RefreshTokenView
@@ -18,5 +19,6 @@ urlpatterns = [
     path('api/user/register/', RegisterView.as_view(), name='register'),
     path('api/user/refresh/', RefreshTokenView.as_view(), name='refresh'),
     path('api/user/logout/', LogoutView.as_view(), name='logout'),
+    path('api/user/info/', GetUserInfoView.as_view(), name='get_user_info'),
     
 ]

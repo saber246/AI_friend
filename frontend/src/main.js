@@ -13,11 +13,11 @@ import { createPinia } from 'pinia'
 const app = createApp(App)
 const pinia = createPinia()
 
-app.use(router)
-app.use(ElementPlus,{
-    locale: zhCn,
-})
 app.use(pinia)
+app.use(router)
+app.use(ElementPlus, {
+  locale: zhCn,
+})
 
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)

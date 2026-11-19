@@ -1,0 +1,1 @@
+import{_ as e,c as t,d as n,g as r,i}from"./index-DwPQALfC.js";var a={__name:`SpaceIndex`,setup(a){let o=i().params.user_id;return(i,a)=>(n(),t(`div`,null,`个人空间: `+e(r(o)),1))}};export{a as default};

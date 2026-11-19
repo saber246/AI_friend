@@ -22,14 +22,14 @@
                 <work class="icon" />
                 <span class="button-text">我的作品</span>
             </div>
-            <div class="common-button" @click="router.push({name: 'profile-index', params: {user_id: user.id}})">
-                <edit_peofile class="icon" />
+            <div class="common-button" @click="router.push({name: 'profile-index'})">
+                <edit_profile class="icon" />
                 <span class="button-text">编辑资料</span>
             </div>
-            <div class="common-button">
+            <div class="common-button" @click="user.logout">
                 <logout class="icon" />
                 <span class="button-text">退出登录</span>
-            </div>
+          </div>
         </el-popover>
     </div>
 </template>
@@ -48,6 +48,7 @@
 .common-button {
     display: flex;
     height: 40px;
+    align-items: center;
 }
 .icon {
     width: 30px;
@@ -69,13 +70,10 @@
 import { useUserStore } from '@/store/user'
 import { useRouter } from 'vue-router'
 import yellow_star from './icon/yellow_star.vue';
-import red_heart from './icon/red_heart.vue'
 import logout from './icon/logout.vue'
 import work from './icon/work.vue'
-import edit_peofile from './icon/edit_peofile.vue'
+import edit_profile from './icon/edit_profile.vue'
 import home from './icon/home.vue'
-
-
 
 const router = useRouter()
 const user = useUserStore()

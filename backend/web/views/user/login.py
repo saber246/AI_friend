@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth import authenticate
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -35,7 +36,7 @@ class LoginView(APIView):
                     value = str(refresh),
                     httponly = True,
                     samesite = 'Lax',
-                    secure = True,
+                    secure = not settings.DEBUG,
                     max_age = 60 * 60 * 24 * 7
                 )
                 return response

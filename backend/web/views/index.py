@@ -1,5 +1,8 @@
-from django.shortcuts import render
+from django.conf import settings
+from django.http import HttpResponse
 
 
 def index(request):
-    return render(request, 'index.html',)
+    index_path = settings.BASE_DIR / 'static' / 'frontend' / 'index.html'
+    with open(index_path, 'r', encoding='utf-8') as f:
+        return HttpResponse(f.read())
