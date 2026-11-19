@@ -1,0 +1,1 @@
+import{i as e,p as t,u as n}from"./index-Dm3B4Fb-.js";var r={};function i(e,r){return t(),n(`div`,null,`not-found-index`)}var a=e(r,[[`render`,i]]);export{a as default};

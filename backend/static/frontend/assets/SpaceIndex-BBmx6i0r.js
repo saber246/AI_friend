@@ -1,0 +1,1 @@
+import{o as e,p as t,u as n,v as r,y as i}from"./index-Dm3B4Fb-.js";var a={__name:`SpaceIndex`,setup(a){let o=e().params.user_id;return(e,a)=>(t(),n(`div`,null,`个人空间: `+i(r(o)),1))}};export{a as default};

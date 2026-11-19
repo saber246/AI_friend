@@ -7,7 +7,8 @@
             <div class="user-info" @click="router.push({name: 'space-index', params: {user_id: user.id}})">
                 <el-avatar :src="user.photo" :size="50" style="margin-left: 10px" />
                 <div class="user-meta">
-                    <div class="username">{{ user.username }}</div>
+                  <div class="username">{{ user.username }}</div>
+                  <div class="user-id">id号：{{ user.id }}</div>
                 </div>
             </div>
             <div class="common-button" @click="router.push({name: 'space-index', params: {user_id: user.id}})" style="margin-top: 10px;">
@@ -42,13 +43,23 @@
 .username {
     font-size: 15px;
     font-weight: bold;
+    display: flex;
     margin-left: 20px;
-    margin-top: 10px;
+    margin-top: 3px;
+}
+.user-id {
+    font-size: 12px;
+    display: flex;
+    margin-left: 20px;
+    margin-top: 5px;
 }
 .common-button {
     display: flex;
     height: 40px;
     align-items: center;
+}
+.common-button:hover {
+    background-color: #91989f;
 }
 .icon {
     width: 30px;
@@ -61,7 +72,6 @@
     font-weight: bold;
 
 }
-
 
 </style>
 

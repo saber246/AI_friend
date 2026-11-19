@@ -1,1 +1,0 @@
-import{c as e,d as t,n}from"./index-DwPQALfC.js";var r={};function i(n,r){return t(),e(`div`,null,`create-index`)}var a=n(r,[[`render`,i]]);export{a as default};

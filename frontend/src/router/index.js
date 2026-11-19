@@ -101,9 +101,11 @@ router.beforeEach( async (to) => {
             user.setAccessToken(data.access)
             user.setUserInfo(data, `${BASE_URL}${data.photo}`)
             return true
+        } else {
+            ElMessage.error(data.message)
         } 
     } catch (error) {
-        ElMessage.error('刷新令牌失败')
+        
     }
 
     if(to.meta.needLogin) {

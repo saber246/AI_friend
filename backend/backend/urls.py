@@ -17,12 +17,14 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, re_path
 from web.urls import urlpatterns as web_urlpatterns
+from web.views import index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(web_urlpatterns)),
+    re_path(r'^(?!api/|admin/|media/|assets/|static/).*$', index.index),
 ]
 
 if settings.DEBUG:
