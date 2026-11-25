@@ -12,6 +12,6 @@ class GetUserInfoView(APIView):
             'result': 'success',
             'user_id': user.id,
             'username': user.username,
-            'phone': user_profile.phone.url,
+            'photo': user_profile.photo.url,
             'profile': user_profile.profile,
         })

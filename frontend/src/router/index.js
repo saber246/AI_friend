@@ -94,7 +94,10 @@ const router = createRouter({
 
 router.beforeEach( async (to) => {
     const user = useUserStore()
-    if (user.isLogin()) return true
+    if (user.isLogin()){
+        ElMessage.success('登录刷新成功')
+        return true
+    }
     try {
         const { data } = await api.post('api/user/refresh/')
         if(data.result === 'success') {
@@ -104,8 +107,7 @@ router.beforeEach( async (to) => {
         } else {
             ElMessage.error(data.message)
         } 
-    } catch (error) {
-        
+    } catch (error) {        
     }
 
     if(to.meta.needLogin) {

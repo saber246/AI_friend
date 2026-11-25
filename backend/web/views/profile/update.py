@@ -11,7 +11,7 @@ def remove_photo(photo):
     if photo and photo.name != 'user/photos/default.jpg':
         old_path = settings.MEDIA_ROOT / photo.name
         if old_path.exists():
-            old_path.remove()
+            old_path.unlink()
 
 
 class UpdateProfile(APIView):
@@ -27,18 +27,16 @@ class UpdateProfile(APIView):
                 return Response({
                     'result': '用户名或简介不能为空',
                 })
-            if username == user.username:
-                return Response({
-                    'result': '用户名不能与当前用户名相同',
-                })
-            if User.objects.filter(username=username).exists():
+            if username!=user.username and User.objects.filter(username=username).exists():
                 return Response({
                     'result': '用户名已存在',
                 })
             if photo:
                 remove_photo(user_profile.photo)
                 user_profile.photo = photo
+            user_profile.profile = profile
             user_profile.save()
+            user.username = username
             user.save()
             return Response({
                 'result': '更新成功',
@@ -48,8 +46,6 @@ class UpdateProfile(APIView):
                 'photo': user_profile.photo.url,
             })
                 
-                
-        
         except Exception as e:  # noqa: BLE001
             return Response({
                 'error': str(e),

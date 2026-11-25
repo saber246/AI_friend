@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
+import api from '@/http/api.js'
+import { useRouter } from 'vue-router'
 
 export const useUserStore = defineStore('use', () => {
     const id = ref()
@@ -23,12 +25,15 @@ export const useUserStore = defineStore('use', () => {
         profile.value = data.profile
     }
 
-    function logout() {
+    async function logout() {
+        await api.post('api/user/logout/')
+        const router = useRouter()
         id.value = 0
         username.value = ''
         photo.value = ''
         profile.value = ''
         accessToken.value = ''
+        router.push('/')
     }
 
 
